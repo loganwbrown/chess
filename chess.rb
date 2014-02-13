@@ -72,14 +72,73 @@ end
 
 class Game
 	def initialize
-		@white_pawn = WhitePawn.new
-		@black_pawn = BlackPawn.new
- 
-		@board = Board.new
- 
-	
- 		game_loop
+		@b = Board.new
+		@wp1 = WhitePawn.new
+		@wp2 = WhitePawn.new
+		@wp3 = WhitePawn.new
+		@wp4 = WhitePawn.new
+		@wp5 = WhitePawn.new
+		@wp6 = WhitePawn.new
+		@wp7 = WhitePawn.new
+		@wp8 = WhitePawn.new
+
+		@b.insert(1,0, @wp1)
+		@b.insert(1,1, @wp2)
+		@b.insert(1,2, @wp3)
+		@b.insert(1,3, @wp4)
+		@b.insert(1,4, @wp5)
+		@b.insert(1,5, @wp6)
+		@b.insert(1,6, @wp7)
+		@b.insert(1,7, @wp8)
+
+
+		@bp1 = BlackPawn.new
+		@bp2 = BlackPawn.new
+		@bp3 = BlackPawn.new
+		@bp4 = BlackPawn.new
+		@bp5 = BlackPawn.new
+		@bp6 = BlackPawn.new
+		@bp7 = BlackPawn.new
+		@bp8 = BlackPawn.new
+
+		@b.insert(6,0, @bp1)
+		@b.insert(6,1, @bp2)
+		@b.insert(6,2, @bp3)
+		@b.insert(6,3, @bp4)
+		@b.insert(6,4, @bp5)
+		@b.insert(6,5, @bp6)
+		@b.insert(6,6, @bp7)
+		@b.insert(6,7, @bp8)
+
+
+		@b.show
+		@game_in_progress = true
+		@game_loop
 	end
+		
+	def game_loop
+		while @game_in_progress == true do
+			puts "What piece would you like to move? [0-7],[0,7]:"
+			input = gets.chomp
+			x = input.split(",")[0].to_i
+			y = input.split(",")[1].to_i
+			hand = @b.get(x,y)
+			@b.insert(x,y, nil)
+			
+
+			puts "Where would you like it to move? [0-7], [0-7]:"
+			input2 = gets.chomp
+			a = input2.split(",")[0].to_i
+			b = input2.split(",")[1].to_i
+			@b.insert(a,b, hand)
+
+			@b.show
+		
+
+		end
+ 
+	end
+
 
 
 end
